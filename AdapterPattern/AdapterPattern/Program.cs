@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AdapterPattern
 {
@@ -11,15 +8,19 @@ namespace AdapterPattern
 	/// </summary>
 	class AC
 	{
-		double MinVoltage = 100;
-		double MaxVoltage = 240;
-		double Ampere = 1.7;
-		int MinFreq = 50;
-		int MaxFreq = 60;
+		private readonly double MinVoltage = 100;
+		private readonly double MaxVoltage = 240;
+		private readonly double Ampere = 1.7;
+		private readonly int MinFreq = 50;
+		private readonly int MaxFreq = 60;
 
-		public override string ToString()
+		/// <summary>
+		/// Cung cấp đầu vào là một nguồn điện xoay chiều
+		/// </summary>
+		/// <returns>Trạng thái của dòng điện</returns>
+		public string InputSource()
 		{
-			return string.Format("{0}-{1}V ~ {2}A {3}-{4}Hz", MinVoltage, MaxVoltage, Ampere, MinFreq, MaxFreq);
+			return string.Format("Input: {0}-{1}V ~ {2}A {3}-{4}Hz", MinVoltage, MaxVoltage, Ampere, MinFreq, MaxFreq);
 		}
 	}
 
@@ -28,12 +29,16 @@ namespace AdapterPattern
 	/// </summary>
 	class DC
 	{
-		double Voltage = 18.5;
-		double Ampere = 3.5;
+		private readonly double Voltage = 18.5;
+		private readonly double Ampere = 3.5;
 
-		public override string ToString()
+		/// <summary>
+		/// Cung cấp đầu ra là một nguồn điện một chiều
+		/// </summary>
+		/// <returns>Trạng thái của dòng điện</returns>
+		public virtual string OutputSource()
 		{
-			return string.Format("{0}V - {1}A", Voltage, Ampere);
+			return string.Format("Output: {0}V - {1}A", Voltage, Ampere);
 		}
 	}
 
@@ -42,11 +47,22 @@ namespace AdapterPattern
 	/// </summary>
 	class Adapter : DC
 	{
-		private AC ac = new AC();
+		/// <summary>
+		/// Lấy nguồn điện xoay chiều
+		/// </summary>
+		private readonly AC ac = new AC();
 
-		public override string ToString()
+		/// <summary>
+		/// Tạo ra dòng điện một chiều
+		/// </summary>
+		/// <returns>Thông tin quá trình chuyển đổi</returns>
+		public override string OutputSource()
 		{
-			return ac.ToString();
+			StringBuilder builder = new StringBuilder();
+			builder.AppendLine(ac.InputSource());
+			builder.AppendLine(base.OutputSource());
+			builder.Append("Succeed");
+			return builder.ToString();
 		}
 	}
 
@@ -55,7 +71,7 @@ namespace AdapterPattern
 		static void Main(string[] args)
 		{
 			DC dc = new Adapter();
-			Console.WriteLine(dc);
+			Console.WriteLine(dc.OutputSource());
 			Console.ReadKey();
 		}
 	}
