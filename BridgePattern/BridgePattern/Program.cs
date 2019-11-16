@@ -111,15 +111,14 @@ namespace BridgePattern
 	{
 		static void Main(string[] args)
 		{
-			//Khởi tạo một Điều khiển từ xa đa năng
+			// Khởi tạo một Điều khiển từ xa đa năng
 			RemoteControl remote = new AdvancedRemoteControl();
-			//Điều khiển tivi, đang tắt, âm lượng là 5, kênh hiện tại là 5
+			// Điều khiển tivi, đang tắt, âm lượng là 5, kênh hiện tại là 5
 			remote.device = new Television("SAMSUNG Smart TV 4K UHD 55 inch", false, 5, 5);
 			remote.Power();
-			//Điều khiển radio, đang tắt, âm lượng là 4, kênh hiện tại là 1
+			// Điều khiển radio, đang tắt, âm lượng là 4, kênh hiện tại là 1
 			remote.device = new Radio("Cassette Toshiba TY-CWU11", false, 4, 1);
 			remote.Power();
-
 			Console.ReadKey();
 		}
 	}
