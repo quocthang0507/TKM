@@ -8,14 +8,14 @@ namespace AdapterPattern
 	/// </summary>
 	class AC
 	{
-		private readonly double MinVoltage = 100;
-		private readonly double MaxVoltage = 240;
-		private readonly double Ampere = 1.7;
-		private readonly int MinFreq = 50;
-		private readonly int MaxFreq = 60;
+		private readonly double MinVoltage = 100; // 100V
+		private readonly double MaxVoltage = 240; // 240V
+		private readonly double Ampere = 1.7; // 1.7A
+		private readonly int MinFreq = 50; // 50Hz
+		private readonly int MaxFreq = 60; // 60Hz
 
 		/// <summary>
-		/// Cung cấp đầu vào là một nguồn điện xoay chiều
+		/// Cung cấp đầu vào là một dòng điện xoay chiều
 		/// </summary>
 		/// <returns>Trạng thái của dòng điện</returns>
 		public string InputSource()
@@ -33,7 +33,7 @@ namespace AdapterPattern
 		private readonly double Ampere = 3.5;
 
 		/// <summary>
-		/// Cung cấp đầu ra là một nguồn điện một chiều
+		/// Cung cấp đầu ra là một dòng điện một chiều
 		/// </summary>
 		/// <returns>Trạng thái của dòng điện</returns>
 		public virtual string OutputSource()
@@ -70,7 +70,9 @@ namespace AdapterPattern
 	{
 		static void Main(string[] args)
 		{
+			// Cắm Adapter vào Laptop
 			DC dc = new Adapter();
+			// Quá trình chuyển đổi
 			Console.WriteLine(dc.OutputSource());
 			Console.ReadKey();
 		}
