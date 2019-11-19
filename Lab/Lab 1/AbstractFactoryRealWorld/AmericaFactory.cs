@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbstractFactoryRealWorld
+﻿namespace AbstractFactoryRealWorld
 {
-	class AmericaFactory:ContinentFactory
+	class AmericaFactory : ContinentFactory
 	{
 		public override Carnivore CreateCarnivore()
 		{
