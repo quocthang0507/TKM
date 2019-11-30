@@ -30,6 +30,9 @@ namespace CompositePattern
 		}
 	}
 
+	/// <summary>
+	/// Cấu trúc chung cho cả tập tin và thư mục
+	/// </summary>
 	abstract class Item
 	{
 		protected string name;
@@ -44,28 +47,46 @@ namespace CompositePattern
 		public abstract void Display(int depth);
 	}
 
+	/// <summary>
+	/// Cấu trúc tập tin
+	/// </summary>
 	class File : Item
 	{
 		public File(string name) : base(name)
 		{
 		}
 
+		/// <summary>
+		/// Không thể thêm một đối tượng vào tập tin
+		/// </summary>
+		/// <param name="component"></param>
 		public override void Add(Item component)
 		{
 			Console.WriteLine("Can't add folder or file to file");
 		}
 
+		/// <summary>
+		/// Hiển thị vị trí tập tin
+		/// </summary>
+		/// <param name="depth"></param>
 		public override void Display(int depth)
 		{
 			Console.WriteLine(new string('-', depth) + name);
 		}
 
+		/// <summary>
+		/// Không thể xóa một đối tượng nào trong tập tin
+		/// </summary>
+		/// <param name="component"></param>
 		public override void Remove(Item component)
 		{
 			Console.WriteLine("Can't remove folder or file from file");
 		}
 	}
 
+	/// <summary>
+	/// Cấu trúc thư mục
+	/// </summary>
 	class Folder : Item
 	{
 		private List<Item> children = new List<Item>();
@@ -74,11 +95,19 @@ namespace CompositePattern
 		{
 		}
 
+		/// <summary>
+		/// Thêm một đối tượng vào thư mục
+		/// </summary>
+		/// <param name="component"></param>
 		public override void Add(Item component)
 		{
 			children.Add(component);
 		}
 
+		/// <summary>
+		/// Hiển thị nội dung bên trong thư mục
+		/// </summary>
+		/// <param name="depth"></param>
 		public override void Display(int depth)
 		{
 			Console.WriteLine(new string('-', depth) + name);
@@ -88,6 +117,10 @@ namespace CompositePattern
 			}
 		}
 
+		/// <summary>
+		/// Xóa một đối tượng trong thư mục
+		/// </summary>
+		/// <param name="component"></param>
 		public override void Remove(Item component)
 		{
 			children.Remove(component);
