@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompositePattern
 {
@@ -10,36 +7,52 @@ namespace CompositePattern
 	{
 		static void Main(string[] args)
 		{
-			Composite root = new Composite("root");
-			root.Add(new Leaf("Left A"));
-			root.Add(new Leaf("Left B"));
+			Folder root = new Folder(@"root (D:\)");
+			root.Add(new File("De thi.docx"));
+			root.Add(new File("Bai lam.docx"));
 
-			Composite composite = new Composite("Composite X");
-			composite.Add(new Leaf("Left A of Composite X"));
-			composite.Add(new Leaf("Left B of Composite X"));
+			Folder hinhAnh = new Folder("Hinh anh");
+			hinhAnh.Add(new File("da lat.jpg"));
+			hinhAnh.Add(new File("dai hoc da lat.jpg"));
+			root.Add(hinhAnh);
 
-			root.Add(composite);
-			root.Add(new Leaf("Leaf C"));
+			root.Add(new File("Tro choi.exe"));
 
-			Leaf leaf = new Leaf("Leaf D");
-			root.Add(leaf);
-			root.Remove(leaf);
-
-			root.Display(1);
+			File temp = new File("temp.tmp");
+			root.Add(temp);
+			Console.WriteLine("Cay thu muc truoc khi xoa: ");
+			root.Display(2);
+			root.Remove(temp);
+			Console.WriteLine("\nCay thu muc sau khi xoa: ");
+			root.Display(2);
 
 			Console.ReadKey();
 		}
 	}
 
-	class Leaf : Component
+	abstract class Item
 	{
-		public Leaf(string name) : base(name)
+		protected string name;
+
+		protected Item(string name)
+		{
+			this.name = name;
+		}
+
+		public abstract void Add(Item component);
+		public abstract void Remove(Item component);
+		public abstract void Display(int depth);
+	}
+
+	class File : Item
+	{
+		public File(string name) : base(name)
 		{
 		}
 
-		public override void Add(Component component)
+		public override void Add(Item component)
 		{
-			Console.WriteLine("Can't add to leaf");
+			Console.WriteLine("Can't add folder or file to file");
 		}
 
 		public override void Display(int depth)
@@ -47,35 +60,21 @@ namespace CompositePattern
 			Console.WriteLine(new string('-', depth) + name);
 		}
 
-		public override void Remove(Component component)
+		public override void Remove(Item component)
 		{
-			Console.WriteLine("Can't remove from a leaf");
+			Console.WriteLine("Can't remove folder or file from file");
 		}
 	}
 
-	abstract class Component
+	class Folder : Item
 	{
-		protected string name;
+		private List<Item> children = new List<Item>();
 
-		protected Component(string name)
-		{
-			this.name = name;
-		}
-
-		public abstract void Add(Component component);
-		public abstract void Remove(Component component);
-		public abstract void Display(int depth);
-	}
-
-	internal class Composite : Component
-	{
-		private List<Component> children = new List<Component>();
-
-		public Composite(string name) : base(name)
+		public Folder(string name) : base(name)
 		{
 		}
 
-		public override void Add(Component component)
+		public override void Add(Item component)
 		{
 			children.Add(component);
 		}
@@ -83,13 +82,13 @@ namespace CompositePattern
 		public override void Display(int depth)
 		{
 			Console.WriteLine(new string('-', depth) + name);
-			foreach (Component component in children)
+			foreach (Item component in children)
 			{
 				component.Display(depth + 2);
 			}
 		}
 
-		public override void Remove(Component component)
+		public override void Remove(Item component)
 		{
 			children.Remove(component);
 		}
