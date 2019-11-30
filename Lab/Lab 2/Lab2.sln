@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{44313E3B-F228-4D7F-972D-E912A9D26E55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgePattern", "BridgePattern\BridgePattern.csproj", "{169BEC35-D05A-4DF0-B33C-CF96F1F2FDBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44313E3B-F228-4D7F-972D-E912A9D26E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44313E3B-F228-4D7F-972D-E912A9D26E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44313E3B-F228-4D7F-972D-E912A9D26E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44313E3B-F228-4D7F-972D-E912A9D26E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169BEC35-D05A-4DF0-B33C-CF96F1F2FDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169BEC35-D05A-4DF0-B33C-CF96F1F2FDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169BEC35-D05A-4DF0-B33C-CF96F1F2FDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169BEC35-D05A-4DF0-B33C-CF96F1F2FDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B043BF83-2ACA-42C6-A4AE-63537D6A2509}
+	EndGlobalSection
+EndGlobal

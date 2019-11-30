@@ -116,9 +116,11 @@ namespace BridgePattern
 			// Điều khiển tivi, đang tắt, âm lượng là 5, kênh hiện tại là 5
 			remote.device = new Television("SAMSUNG Smart TV 4K UHD 55 inch", false, 5, 5);
 			remote.Power();
+			(remote as AdvancedRemoteControl).Mute();
 			// Điều khiển radio, đang tắt, âm lượng là 4, kênh hiện tại là 1
 			remote.device = new Radio("Cassette Toshiba TY-CWU11", false, 4, 1);
 			remote.Power();
+			remote.UpVolumn();
 			Console.ReadKey();
 		}
 	}
