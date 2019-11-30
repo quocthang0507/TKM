@@ -10,19 +10,21 @@ namespace AdapterPattern
 	{
 		static void Main(string[] args)
 		{
-			Steam target = new Adapter();
-			target.Request();
+			Steam target = new Boil();
+			target.State();
 			Console.ReadKey();
 		}
 	}
 
-	class Adapter : Steam
+	class Boil : Steam
 	{
-		private Water _adaptee = new Water();
+		private Water water = new Water();
 
-		public override void Request()
+		public override void State()
 		{
-			_adaptee.SpecificRequest();
+			water.State();
+			Console.WriteLine("is converted to");
+			base.State();
 		}
 	}
 
@@ -30,6 +32,9 @@ namespace AdapterPattern
 	{
 		int degreeCelcius;
 		double volume; //liter
+
+		public int DegreeCelcius { get { return degreeCelcius; } }
+		public double Volume { get { return volume; } }
 
 		public Water()
 		{
@@ -43,7 +48,7 @@ namespace AdapterPattern
 			this.volume = volume;
 		}
 
-		public void SpecificRequest()
+		public void State()
 		{
 			Console.WriteLine("Water volume {0} at {1} degree Celcius", volume, degreeCelcius);
 		}
@@ -69,7 +74,7 @@ namespace AdapterPattern
 			this.volume = volume;
 		}
 
-		public virtual void Request()
+		public virtual void State()
 		{
 			Console.WriteLine("Steam volume {0} at {1} degree Celcius", volume, degreeCelcius);
 		}
