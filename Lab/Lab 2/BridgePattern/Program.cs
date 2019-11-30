@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BridgePattern
 {
@@ -10,54 +6,57 @@ namespace BridgePattern
 	{
 		static void Main(string[] args)
 		{
-			Abstraction abstraction = new RefinedAbstraction();
-			abstraction.Implementor = new ConcreteImplementorA();
-			abstraction.Operation();
+			Student student1 = new StudentUniversity("La Quoc Thang");
+			student1.Subject = new DesignPattern();
+			student1.Operation();
 
-			abstraction.Implementor = new ConcreteImplementorB();
-			abstraction.Operation();
+			student1.Subject = new SoftwareEngineering();
+			student1.Operation();
 
 			Console.ReadKey();
 		}
 	}
 
-	class ConcreteImplementorB : Implementor
+	abstract class Subject
 	{
+		public abstract void Register(string name);
+	}
+
+	class SoftwareEngineering : Subject
+	{
+		public override void Register(string name)
+		{
+			Console.WriteLine(name + " has just registered " + typeof(SoftwareEngineering).Name);
+		}
+	}
+
+	class DesignPattern : Subject
+	{
+		public override void Register(string name)
+		{
+			Console.WriteLine(name + " has just registered " + typeof(DesignPattern).Name);
+		}
+	}
+
+	class StudentUniversity : Student
+	{
+		public StudentUniversity(string name)
+		{
+			this.Name = name;
+		}
 		public override void Operation()
 		{
-			Console.WriteLine("ConcreteImplementorB Operation");
+			subject.Register(this.Name);
 		}
 	}
 
-	class ConcreteImplementorA : Implementor
+	abstract class Student
 	{
-		public override void Operation()
-		{
-			Console.WriteLine("ConcreteImplementorA Operation");
-		}
-	}
+		protected Subject subject;
+		public string Name;
+		public Subject Subject { set { subject = value; } }
 
-	internal class RefinedAbstraction : Abstraction
-	{
-		public override void Operation()
-		{
-			implementor.Operation();
-		}
-	}
-
-	class Abstraction
-	{
-		protected Implementor implementor;
-		public Implementor Implementor { set { implementor = value; } }
-
-		public virtual void Operation()
-		{
-			implementor.Operation();
-		}
-	}
-
-	abstract class Implementor
-	{
 		public abstract void Operation();
+
 	}
 }
