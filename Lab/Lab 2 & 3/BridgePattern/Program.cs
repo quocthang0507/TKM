@@ -18,7 +18,7 @@ namespace BridgePattern
 	}
 
 	/// <summary>
-	/// Môn học
+	/// Implementation class: Môn học
 	/// </summary>
 	abstract class Subject
 	{
@@ -30,7 +30,7 @@ namespace BridgePattern
 	}
 
 	/// <summary>
-	/// Môn Công nghệ phần mềm
+	/// ConcreteImplementation: Môn Công nghệ phần mềm
 	/// </summary>
 	class SoftwareEngineering : Subject
 	{
@@ -45,7 +45,7 @@ namespace BridgePattern
 	}
 
 	/// <summary>
-	/// Môn Thiết kế mẫu
+	/// ConcreteImplementation: Môn Thiết kế mẫu
 	/// </summary>
 	class DesignPattern : Subject
 	{
@@ -60,7 +60,7 @@ namespace BridgePattern
 	}
 
 	/// <summary>
-	/// Sinh viên
+	/// Abstraction class: Sinh viên
 	/// </summary>
 	abstract class Student
 	{
@@ -75,7 +75,7 @@ namespace BridgePattern
 	}
 
 	/// <summary>
-	/// Sinh viên đại học
+	/// Concrete Abstraction: Sinh viên đại học
 	/// </summary>
 	class StudentUniversity : Student
 	{

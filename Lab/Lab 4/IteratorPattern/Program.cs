@@ -11,53 +11,72 @@ namespace IteratorPattern
 	{
 		static void Main(string[] args)
 		{
-			ConcreteAggregate tapHop1 = new ConcreteAggregate();
-			tapHop1[0] = "A";
-			tapHop1[1] = "B";
-			tapHop1[2] = "C";
-			tapHop1[3] = "D";
-			Iterator iterator = tapHop1.CreateIterator();
-			Console.WriteLine("Iterating over collection");
-			object item = iterator.First();
+			KhoHangDaLat khoHangDL = new KhoHangDaLat();
+			khoHangDL[0] = new SanPham("Keo Deo Chupa Chups Sour Belt (32 cai)", 63000, "Chupa Chups");
+			khoHangDL[1] = new SanPham("Banh geo Nhat Ichi (180g)", 32000, "Ichi");
+			khoHangDL[2] = new SanPham("Banh Chocopie hop 12 cai vi ca cao (360g)", 52200, "Chocopie");
+			khoHangDL[3] = new SanPham("Thung 30 goi mi snack huong Ga Nuong (16g)", 99000, "Gemez Enaak");
+			NhanVienKiemKe nhanVienDL = new NhanVienKiemKeDaLat(khoHangDL);
+
+			Console.WriteLine("Nhan vien dang kiem ke hang hoa trong kho hang Da Lat...");
+
+			object item = nhanVienDL.First();
 			while (item != null)
 			{
 				Console.WriteLine(item);
-				item = iterator.Next();
+				item = nhanVienDL.Next();
 			}
 			Console.ReadKey();
 		}
 	}
 
-	abstract class Aggregate
+	class SanPham
 	{
-		public abstract Iterator CreateIterator();
-	}
+		public string TenSanPham;
+		public double Gia;
+		public string CongTy;
 
-	class ConcreteAggregate : Aggregate
-	{
-		private ArrayList items = new ArrayList();
-
-		public override Iterator CreateIterator()
+		public SanPham(string tenSP, double gia, string congTy)
 		{
-			return new ConcreteIterator(this);
+			TenSanPham = tenSP;
+			Gia = gia;
+			CongTy = congTy;
 		}
 
-		public int Count { get { return items.Count; } }
+		public override string ToString()
+		{
+			return string.Format("*** San pham: {0} co gia {1} duoc san xuat tai {2}", TenSanPham, Gia, CongTy);
+		}
+	}
+
+	/// <summary>
+	/// Aggregate class
+	/// </summary>
+	abstract class KhoHang
+	{
+	}
+
+	/// <summary>
+	/// Concrete aggregate class
+	/// </summary>
+	class KhoHangDaLat : KhoHang
+	{
+		private List<SanPham> HangHoaTrongKho = new List<SanPham>();
+
+		public int SoLuong { get { return HangHoaTrongKho.Count; } }
 
 		public object this[int index]
 		{
-			get
-			{
-				return items[index];
-			}
-			set
-			{
-				items.Insert(index, value);
-			}
+			get => HangHoaTrongKho[index];
+			set => HangHoaTrongKho.Add(value as SanPham);
 		}
 
 	}
-	abstract class Iterator
+
+	/// <summary>
+	/// Nhan vien ke ke hang hoa
+	/// </summary>
+	abstract class NhanVienKiemKe
 	{
 		public abstract object First();
 		public abstract object Next();
@@ -65,37 +84,40 @@ namespace IteratorPattern
 		public abstract object CurrentItem();
 	}
 
-	internal class ConcreteIterator : Iterator
+	/// <summary>
+	/// Concrete Iterator class
+	/// </summary>
+	class NhanVienKiemKeDaLat : NhanVienKiemKe
 	{
-		private ConcreteAggregate concreteAggregate;
-		private int current = 0;
+		private KhoHangDaLat hangHoa;
+		private int HienTai = 0;
 
-		public ConcreteIterator(ConcreteAggregate concreteAggregate)
+		public NhanVienKiemKeDaLat(KhoHangDaLat khoHang)
 		{
-			this.concreteAggregate = concreteAggregate;
+			this.hangHoa = khoHang;
 		}
 
 		public override object First()
 		{
-			return concreteAggregate[0];
+			return hangHoa[0];
 		}
 
 		public override object Next()
 		{
 			object result = null;
-			if (current < concreteAggregate.Count - 1)
-				result = concreteAggregate[++current];
+			if (HienTai < hangHoa.SoLuong - 1)
+				result = hangHoa[++HienTai];
 			return result;
 		}
 
 		public override object CurrentItem()
 		{
-			return concreteAggregate[current];
+			return hangHoa[HienTai];
 		}
 
 		public override bool IsDone()
 		{
-			return current > concreteAggregate.Count;
+			return HienTai > hangHoa.SoLuong;
 		}
 	}
 }

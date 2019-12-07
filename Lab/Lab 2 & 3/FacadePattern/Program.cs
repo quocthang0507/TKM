@@ -14,7 +14,7 @@ namespace FacadePattern
 	}
 
 	/// <summary>
-	/// Hệ thống Trường Đại học Đà Lạt
+	/// System: Hệ thống Trường Đại học Đà Lạt
 	/// </summary>
 	class TruongDaiHocDaLat
 	{
@@ -51,7 +51,7 @@ namespace FacadePattern
 	}
 
 	/// <summary>
-	/// Hẹ thống quản lý học phần
+	/// Subsystem1: Hệ thống quản lý học phần
 	/// </summary>
 	class QuanLyHocPhan
 	{
@@ -62,7 +62,7 @@ namespace FacadePattern
 	}
 
 	/// <summary>
-	/// Hệ thống quản lý sinh viên
+	/// Subsystem2: Hệ thống quản lý sinh viên
 	/// </summary>
 	class QuanLySinhVien
 	{
@@ -73,7 +73,7 @@ namespace FacadePattern
 	}
 
 	/// <summary>
-	/// Hệ thống quản lý tài chính
+	/// Subsystem3: Hệ thống quản lý tài chính
 	/// </summary>
 	class QuanLyTaiChinh
 	{

@@ -14,7 +14,7 @@ namespace AdapterPattern
 	}
 
 	/// <summary>
-	/// Quá trình đun sôi nước, nước chuyển từ dạng lỏng sang dạng khí
+	/// Adapter class: Quá trình đun sôi nước, nước chuyển từ dạng lỏng sang dạng khí
 	/// </summary>
 	class Boil : Steam
 	{
@@ -42,7 +42,7 @@ namespace AdapterPattern
 	}
 
 	/// <summary>
-	/// Nước
+	/// Adaptee class: Nước
 	/// </summary>
 	class Water
 	{
@@ -87,7 +87,7 @@ namespace AdapterPattern
 	}
 
 	/// <summary>
-	/// Hơi nước
+	/// Target class: Hơi nước
 	/// </summary>
 	class Steam
 	{

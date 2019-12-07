@@ -30,7 +30,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Món ăn Việt Nam
+	/// Component class: Món ăn Việt Nam
 	/// </summary>
 	abstract class VietnameseFood
 	{
@@ -38,7 +38,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Canh chua Cá lóc
+	/// ConcreteComponent: Canh chua Cá lóc
 	/// </summary>
 	class CanhChua : VietnameseFood
 	{
@@ -66,7 +66,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Cá lóc kho tộ
+	/// ConcreteComponent: Cá lóc kho tộ
 	/// </summary>
 	class CaKhoTo : VietnameseFood
 	{
@@ -94,7 +94,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Bánh xèo
+	/// ConcreteComponent: Bánh xèo
 	/// </summary>
 	class BanhXeo : VietnameseFood
 	{
@@ -122,7 +122,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Trình bày món ăn
+	/// Decorator: Trình bày món ăn
 	/// </summary>
 	abstract class Decorator : VietnameseFood
 	{
@@ -143,7 +143,7 @@ namespace Decorator
 	}
 
 	/// <summary>
-	/// Trạng thái của món ăn
+	/// ConcreteDecorator: Trạng thái của món ăn
 	/// </summary>
 	class Available : Decorator
 	{

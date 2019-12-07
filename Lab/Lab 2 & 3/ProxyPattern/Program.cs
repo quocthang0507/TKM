@@ -12,11 +12,17 @@ namespace ProxyPattern
 		}
 	}
 
+	/// <summary>
+	/// Subject class
+	/// </summary>
 	abstract class Tien
 	{
 		public abstract void Request();
 	}
 
+	/// <summary>
+	/// RealSubject class
+	/// </summary>
 	class TienMat : Tien
 	{
 		public override void Request()
@@ -25,6 +31,9 @@ namespace ProxyPattern
 		}
 	}
 
+	/// <summary>
+	/// Proxy class
+	/// </summary>
 	class TheTinDung : Tien
 	{
 		private TienMat realSubject;

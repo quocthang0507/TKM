@@ -31,7 +31,7 @@ namespace CompositePattern
 	}
 
 	/// <summary>
-	/// Cấu trúc chung cho cả tập tin và thư mục
+	/// Component class: Cấu trúc chung cho cả tập tin và thư mục
 	/// </summary>
 	abstract class Item
 	{
@@ -48,7 +48,7 @@ namespace CompositePattern
 	}
 
 	/// <summary>
-	/// Cấu trúc tập tin
+	/// Leaf: Cấu trúc tập tin
 	/// </summary>
 	class File : Item
 	{
@@ -85,7 +85,7 @@ namespace CompositePattern
 	}
 
 	/// <summary>
-	/// Cấu trúc thư mục
+	/// Composite: Cấu trúc thư mục
 	/// </summary>
 	class Folder : Item
 	{
