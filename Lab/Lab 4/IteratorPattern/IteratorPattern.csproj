@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB9870CC-BB52-44D4-AE83-A707945AB192}</ProjectGuid>
+    <ProjectGuid>{63B4B210-D4D5-4061-B6D1-1649311FEFDC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CommandPattern</RootNamespace>
-    <AssemblyName>CommandPattern</AssemblyName>
+    <RootNamespace>IteratorPattern</RootNamespace>
+    <AssemblyName>IteratorPattern</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

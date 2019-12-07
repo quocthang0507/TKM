@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommandPattern
 {
@@ -10,57 +6,112 @@ namespace CommandPattern
 	{
 		static void Main(string[] args)
 		{
-			Receiver reveiver = new Receiver();
-			Command command = new ConcreteCommand(reveiver);
-			Invoker invoker = new Invoker();
-			invoker.SetCommand(command);
-			invoker.ExecuteCommand();
+			DauBepMonQuay dauBep1 = new DauBepMonQuay();
+			DauBepMonKho dauBep2 = new DauBepMonKho();
+
+			DatMonAn khachGoiMon = new ThitHeoKhoTo();
+			NguoiPhucVu nhanVienPhucVu = new NguoiPhucVu(khachGoiMon);
+
 			Console.ReadKey();
 		}
 	}
 
-	abstract class Command
+	/// <summary>
+	/// Command class
+	/// </summary>
+	abstract class DatMonAn
 	{
-		protected Receiver receiver;
-
-		public Command(Receiver receiver)
-		{
-			this.receiver = receiver;
-		}
-
-		public abstract void Execute();
+		public abstract void ThucHien();
 	}
 
-	class ConcreteCommand : Command
+	/// <summary>
+	/// Concrete Command class
+	/// </summary>
+	class ThitHeoKhoTo : DatMonAn
 	{
-		public ConcreteCommand(Receiver receiver) : base(receiver) { }
+		private DauBepMonKho dauBep;
 
-		public override void Execute()
+		public ThitHeoKhoTo()
 		{
-			receiver.Action();
+			dauBep = new DauBepMonKho();
+		}
+
+		public override void ThucHien()
+		{
+			dauBep.ThucHienMonAn();
+			Console.WriteLine(this.ToString());
+		}
+
+		public override string ToString()
+		{
+			return "Mon Thit heo kho to da hoan tat";
 		}
 	}
 
-	class Receiver
+	/// <summary>
+	/// Concrete Command class
+	/// </summary>
+	class ThitHeoQuay : DatMonAn
 	{
-		public void Action()
+		private DauBepMonQuay dauBep;
+
+		public ThitHeoQuay()
 		{
-			Console.WriteLine("Called Receiver Action()");
+			dauBep = new DauBepMonQuay();
+		}
+
+		public override void ThucHien()
+		{
+			dauBep.ThucHienMonAn();
+			Console.WriteLine(this.ToString());
+		}
+
+		public override string ToString()
+		{
+			return "Mon Thit heo quay hoan tat";
 		}
 	}
 
-	class Invoker
+	/// <summary>
+	/// Receiver 1
+	/// </summary>
+	class DauBepMonQuay
 	{
-		private Command command;
+		public void ThucHienMonAn()
+		{
+			Console.WriteLine("Dau bep dang quay thit heo...");
+		}
+	}
+
+
+	/// <summary>
+	/// Receiver 2
+	/// </summary>
+	class DauBepMonKho
+	{
+		public void ThucHienMonAn()
+		{
+			Console.WriteLine("Dau bep dang kho thit...");
+		}
+	}
+
+	/// <summary>
+	/// Invoker
+	/// </summary>
+	class NguoiPhucVu
+	{
+		private DatMonAn goiMon;
+
+		public NguoiPhucVu(DatMonAn goiMon)
+		{
+			this.goiMon = goiMon;
+			ExecuteCommand();
+		}
 
 		public void ExecuteCommand()
 		{
-			command.Execute();
-		}
-
-		public void SetCommand(Command command)
-		{
-			this.command = command;
+			goiMon.ThucHien();
+			Console.WriteLine("Mang mon an cho khach hang thuong thuc");
 		}
 
 	}
