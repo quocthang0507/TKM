@@ -3,73 +3,76 @@
 namespace AbstractFactory
 {
 	/// <summary>
-	///  lớp abstract
-	/// </summary>
-	abstract class Sandwich { }
-
-	/// <summary>
-	/// lớp abstract
-	/// </summary>
-	abstract class Dessert { }
-
-	/// <summary>
 	/// Lớp AbstractFactory, định nghĩa các phương thức để tạo các đối tượng trừu tượng.
 	/// </summary>
-	abstract class RecipeFactory
+	abstract class NhaMayCheBienThucAn
 	{
-		public abstract Sandwich CreateSandwich();
-		public abstract Dessert CreateDessert();
+		public abstract ThitQuay LamThitQuay();
+		public abstract ChaGio LamChaGio();
 	}
+
+	/// <summary>
+	/// Lớp Product A
+	abstract class ThitQuay { }
+
+	/// <summary>
+	/// Lớp Product B
+	/// </summary>
+	abstract class ChaGio { }
 
 	/// <summary>
 	///A ConcreteProduct
 	/// </summary>
-	class BLT : Sandwich { }
+	class ThitHeoQuayChay : ThitQuay { }
 
 	/// <summary>
 	/// A ConcreteProduct
 	/// </summary>
-	class CremeBrulee : Dessert { }
+	class ChaGioNam : ChaGio { }
 
 	/// <summary>
 	/// A concrete object
 	/// </summary>
-	class GrilledCheese : Sandwich { }
+	class ThitHeoQuay : ThitQuay { }
 
 	/// <summary>
 	/// A concrete object
 	/// </summary>
-	class IceCreamSundae : Dessert { }
+	class ChaGioThit : ChaGio { }
 
 	/// <summary>
 	/// A concrete factory which creates concrete objects by implementing the abstract factory's methods.
 	/// </summary>
-	class KidCuisineFactory : RecipeFactory
+	class NhaMayMonChay : NhaMayCheBienThucAn
 	{
-		public override Sandwich CreateSandwich()
+		public override ThitQuay LamThitQuay()
 		{
-			return new GrilledCheese();
+			Console.WriteLine("\nThit heo quay chay");
+			return new ThitHeoQuayChay();
 		}
 
-		public override Dessert CreateDessert()
+		public override ChaGio LamChaGio()
 		{
-			return new IceCreamSundae();
+			Console.WriteLine("\nCha gio nam");
+			return new ChaGioNam();
 		}
 	}
 
 	/// <summary>
 	/// A ConcreteFactory which creates concrete objects by implementing the abstract factory's methods.
 	/// </summary>
-	class AdultCuisineFactory : RecipeFactory
+	class NhaMayMonMan : NhaMayCheBienThucAn
 	{
-		public override Sandwich CreateSandwich()
+		public override ThitQuay LamThitQuay()
 		{
-			return new BLT();
+			Console.WriteLine("\nThit heo quay");
+			return new ThitHeoQuay();
 		}
 
-		public override Dessert CreateDessert()
+		public override ChaGio LamChaGio()
 		{
-			return new CremeBrulee();
+			Console.WriteLine("\nCha gio thit");
+			return new ChaGioThit();
 		}
 	}
 
@@ -77,33 +80,44 @@ namespace AbstractFactory
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Who are you? (A)dult or (C)hild?");
-			char input = Console.ReadKey().KeyChar;
-			RecipeFactory factory;
+			char input;
+			NhaMayCheBienThucAn nhaMay;
+
+			Console.WriteLine("Ban muon An (c)hay hay An (m)an?");
+			input = Console.ReadKey().KeyChar;
+
 			switch (input)
 			{
-				case 'a':
-				case 'A':
-					factory = new AdultCuisineFactory();
-					break;
-
 				case 'c':
 				case 'C':
-					factory = new KidCuisineFactory();
+					nhaMay = new NhaMayMonChay();
 					break;
-
+				case 'm':
+				case 'M':
+					nhaMay = new NhaMayMonMan();
+					break;
 				default:
-					Console.WriteLine("Input error");
-					Console.ReadKey();
+					Console.WriteLine("\nBan nhap sai!");
 					return;
-
 			}
 
-			var sandwich = factory.CreateSandwich();
-			var dessert = factory.CreateDessert();
+			Console.WriteLine("\nBan muon (T)hit quay hay (C)ha gio?");
+			input = Console.ReadKey().KeyChar;
 
-			Console.WriteLine("\nSandwich: " + sandwich.GetType().Name);
-			Console.WriteLine("Dessert: " + dessert.GetType().Name);
+			switch (input)
+			{
+				case 't':
+				case 'T':
+					nhaMay.LamThitQuay();
+					break;
+				case 'c':
+				case 'C':
+					nhaMay.LamChaGio();
+					break;
+				default:
+					Console.WriteLine("\nBan nhap sai!");
+					return;
+			}
 
 			Console.ReadKey();
 

@@ -6,7 +6,7 @@ namespace ProxyPattern
 	{
 		static void Main(string[] args)
 		{
-			TheTinDung proxy = new TheTinDung();
+			TheTinDung proxy = new TheTinDung(1000000);
 			proxy.Request();
 			Console.ReadKey();
 		}
@@ -17,6 +17,13 @@ namespace ProxyPattern
 	/// </summary>
 	abstract class Tien
 	{
+		public double amount { get; set; }
+
+		public Tien(double amount)
+		{
+			this.amount = amount;
+		}
+
 		public abstract void Request();
 	}
 
@@ -25,6 +32,11 @@ namespace ProxyPattern
 	/// </summary>
 	class TienMat : Tien
 	{
+		public TienMat(double amount) : base(amount)
+		{
+
+		}
+
 		public override void Request()
 		{
 			Console.WriteLine("Da thanh toan thanh cong");
@@ -38,15 +50,16 @@ namespace ProxyPattern
 	{
 		private TienMat realSubject;
 
-		public TheTinDung()
+		public TheTinDung(double amount) : base(amount)
 		{
+			this.realSubject = new TienMat(amount);
 		}
 
 		public override void Request()
 		{
-			if (realSubject == null)
-				realSubject = new TienMat();
-			Console.WriteLine("Su dung the tin dung thay the tien mat");
+			Console.WriteLine("Su dung The tin dung thay the Tien mat");
+			Console.WriteLine("Tai khoan ben trong the la : " + realSubject.amount);
+			Console.WriteLine("Tuong ung voi so tien mat la : " + realSubject.amount);
 			realSubject.Request();
 		}
 	}
